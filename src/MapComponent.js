@@ -13,24 +13,19 @@ const MapComponent = () => {
     };
 
     return (
-        <div>
-            <h1 style={{ textAlign: 'center' }}>Интерактивная карта с заводами</h1>
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <div style={{ height: '100%' }}>
+            <div className="search-container">
                 <input
                     type="text"
                     value={regionInput}
                     onChange={(e) => setRegionInput(e.target.value)}
                     placeholder="Введите регион для поиска"
-                    style={{ padding: '10px', width: '60%', fontSize: '16px', marginRight: '10px' }}
                 />
-                <button
-                    onClick={handleRegionSearch}
-                    style={{ padding: '10px 20px', backgroundColor: '#4CAF50', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer', fontSize: '16px' }}
-                >
+                <button onClick={handleRegionSearch}>
                     Искать заводы
                 </button>
             </div>
-            <div id="map-container" style={{ width: '100%', height: '600px', marginTop: '20px' }}></div>
+            <div id="map-container"></div>
         </div>
     );
 };
