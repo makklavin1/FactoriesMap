@@ -24,6 +24,9 @@ const MapComponent = () => {
                 <button onClick={handleRegionSearch}>
                     Искать заводы
                 </button>
+                <a href="https://vektra24.ru" target="_blank" rel="noopener noreferrer" className="calculator-button">
+                    В калькулятор
+                </a>
             </div>
             <div id="map-container"></div>
         </div>
