@@ -26,7 +26,7 @@ const App = () => {
 
                 window.ymaps.ready(() => {
                     console.log('Yandex Maps API is ready');
-                    const { Map, Placemark, Polygon, route, GeoObject } = window.ymaps;
+                    const { Map, Placemark, Circle, GeoObject } = window.ymaps;
                     const mapInstance = new Map('map-container', {
                         center: [55.76, 37.64],
                         zoom: 5,
@@ -39,9 +39,7 @@ const App = () => {
 
                     window.mapInstance = mapInstance;
 
-
-
-                    // Заводы
+                                       // Заводы
                     const factories = [
                         {
                             coords: [56.104622, 49.866245],
@@ -235,10 +233,11 @@ const App = () => {
                                 return;
                             }
                             const coords = firstGeoObject.geometry.getCoordinates();
-                            const bounds = firstGeoObject.properties.get('boundedBy');
-                            const polygon = new window.ymaps.Polygon([bounds[0], [bounds[1][0], bounds[0][1]], bounds[1], [bounds[0][0], bounds[1][1]], bounds[0]], {}, {
-                                fillColor: '#ff000022',
-                                strokeColor: '#ff0000',
+
+                            // Добавление круга с радиусом 1000 км
+                            const searchCircle = new Circle([coords, 900000], {}, {
+                                fillColor: 'rgba(144,238,144,0.3)',  // Светло-зеленая заливка, полупрозрачная
+                                strokeColor: '#A9A9A9',              // Серая обводка
                                 strokeWidth: 2
                             });
 
@@ -246,9 +245,9 @@ const App = () => {
                             factoryPlacemarks.forEach(placemark => {
                                 mapInstance.geoObjects.add(placemark);
                             });
-                            mapInstance.geoObjects.add(polygon);
+                            mapInstance.geoObjects.add(searchCircle);
 
-                            mapInstance.setCenter(coords, 10);
+                            mapInstance.setCenter(coords, 5);
 
                             let nearestFactory = null;
                             let minDistance = Number.MAX_VALUE;
