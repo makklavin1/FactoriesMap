@@ -267,7 +267,7 @@ const App = () => {
                                     coords,
                                     nearestFactory.coords
                                 ], {
-                                    mapStateAutoApply: true
+                                    mapStateAutoApply: false
                                 }).then((route) => {
                                     route.getPaths().options.set({
                                         strokeColor: '0000ffff',
